@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{user/layout/index :: dynamic(~{::main})}">
+<body>
+<main>
+
+    <div th:replace="~{user/cart/view :: shopping_cart}"></div>
+    <div class=" panel-primary ">
+        <div class="panel-header-dh">
+            <h2 style="text-align: center;">Thông tin đặt hàng</h2>
+            <br>
+            <hr>
+        </div>
+        <div class="panel-body-dh">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <div class="thongtin">Người mua</div>
+                    <div class="form-control" id="username" readonly>[[${#request.remoteUser}]]</div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <div class="thongtin">Ngày đặt hàng</div>
+                    <div class="form-control" readonly>{{order1.createDate | date : 'dd-MM-yyyy HH:mm'}}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <div class="thongtin">Thành Phố</div>
+                    <select id="city" onchange="getWards()"></select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <div class="thongtin">Quận Huyện</div>
+                    <select onchange="getService()" id="wards"></select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <div class="thongtin">Cân nặng</div>
+                    <input id="weight" class="form-control">
+                </div>
+                <div class="form-group col-sm-3">
+                    <div class="thongtin">Tính tiền</div>
+                    <button id="price">Tính tiền</button>
+                </div>
+                <div class="form-group col-sm-10">
+                    <div class="thongtin">Loại ship</div>
+                    <select id="service">    </select>
+                </div>
+                <div class="form-group col-sm-10">
+                    <div class="thongtin">Số điện thoại</div>
+                    <input ng-model="order1.phone" class="form-control" style="width: 200px">
+                </div>
+                <div class="form-group col-sm-10">
+                    <div class="thongtin">Tổng tiền</div>
+                    <div  class="form-control" style="color: #18d26e; width: 200px" id="total"></div>
+                    <div id="totalDetail"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <div class="thongtin">Địa chỉ giao hàng</div>
+                    <textarea ng-model="order1.address" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer ">
+            <div class="col-12 d-flex shopping-box text-center">
+
+                <a type="button" class="ml-auto btn hvr-hover"
+                   data-toggle="modal" data-target="#myModal">Thanh toán sau khi nhận hàng</a> <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <p style="color: red; font-size: 24px">Bạn có chắc muốn đặt hàng</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a ng-click="order1.purchase()"
+                                   class="btn btn-warning">Đặt hàng</a>
+
+                                <a type="button" class="btn btn-default"
+                                   data-dismiss="modal">Đóng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+
+    </div>
+
+</main>
+</body>
+
+</html>
+<script>
+    function getCity() {
+        $.ajax({
+            type: "Get",
+            url: "https://online-gateway.ghn.vn/shiip/public-api/master-data/province",
+            headers: {token: "4fcabb9b-6068-11ee-af43-6ead57e9219a"},
+            success: function (res) {
+                let str = "";
+                for (let i = 0; i < res.data.length; i++) {
+                    str += `<option value="${res.data[i].ProvinceID}">${res.data[i].ProvinceName}</option>`
+                }
+                document.getElementById("city").innerHTML = str;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    getCity();
+
+    function getWards() {
+        let city = document.getElementById("city").value;
+        if (city) {
+            $.ajax({
+                type: "POST",
+                url: "https://online-gateway.ghn.vn/shiip/public-api/master-data/district",
+                headers: {
+                    token: "4fcabb9b-6068-11ee-af43-6ead57e9219a",
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({"province_id": parseInt(city)}),
+                success: function (res) {
+                    let str = "";
+                    for (let i = 0; i < res.data.length; i++) {
+                        str += `<option value="${res.data[i].DistrictID}">${res.data[i].DistrictName}</option>`
+                    }
+                    document.getElementById("wards").innerHTML = str;
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+    }
+    function getService() {
+        let ward = document.getElementById("wards").value;
+        if (ward) {
+            let obj = {
+                "from_district":3440,
+                "to_district":parseInt(ward),
+                "shop_id": 3929172
+            }
+            $.ajax({
+                type: "POST",
+                url: "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/available-services",
+                headers: {
+                    token: "4fcabb9b-6068-11ee-af43-6ead57e9219a",
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(obj),
+                success: function (res) {
+                    let str = "";
+                    for (let i = 0; i < res.data.length; i++) {
+                        str += `<option value="${res.data[i].service_id}">${res.data[i].short_name}</option>`
+                    }
+                    document.getElementById("service").innerHTML = str;
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+    }
+
+    function getMoneyShip(money) {
+        let city = document.getElementById("city");
+        let ward = document.getElementById("wards");
+        let weight = document.getElementById("weight").value;
+        let service = document.getElementById("service").value;
+        if (city.value && ward.value && weight) {
+            let data = {
+                "service_id": parseInt(service),
+                "insurance_value": money,
+                "coupon": null,
+                "from_district_id": 3440,
+                "to_district_id": parseInt(ward.value),
+                "height": 15,
+                "length": 15,
+                "weight": weight ? parseInt(weight) : 1000,
+                "width": 15
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
+                headers: {
+                    token: "4fcabb9b-6068-11ee-af43-6ead57e9219a",
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(data),
+                success: function (res) {
+                    document.getElementById("total").innerHTML = money + res.data.total + " VND";
+                    document.getElementById("totalDetail").innerHTML = "giá : " + money + " VND - ship: " + res.data.total + " VND";
+
+                    var appElement = document.querySelector('[ng-app="shopping-cart-app"]');
+                    var $scope = angular.element(appElement).scope();
+                    $scope.order1.address += ward.options[ward.selectedIndex].text + " - " +city.options[city.selectedIndex].text;
+                    $scope.order1.price = money + res.data.total;
+
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert("Hiện không thể ship đến địa điểm hiện tại, vui lòng chọn địa điểm nhận khác")
+                }
+            });
+        } else {
+            alert("chưa nhập đủ thông tin")
+        }
+    }
+
+
+    $(document).ready(function () {
+        var appElement = document.querySelector('[ng-app="shopping-cart-app"]');
+        var $scope = angular.element(appElement).scope();
+
+        document.getElementById("price").addEventListener("click", () => {
+            getMoneyShip($scope.cart.amount);
+        })
+
+    })
+
+</script>

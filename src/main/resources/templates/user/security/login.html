@@ -1,0 +1,109 @@
+ 	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/acc/index ::dynamic(~{::main})}">
+<main>
+	<form th:action="@{/security/login}" method="post"
+		class="col-sm-6 col-sm-offset-3">
+		<div  class="product-thumb">
+
+		<div class="panel-heading text-center" > <h2> <strong> Đăng nhập </strong></h2></div>
+		<div class="form-group text-center" >
+			<i class="text-danger" style="text-align: center;" th:text="${message}"></i>
+		</div>
+		
+		
+		<div class="form-group ">
+			<div class="row">
+				<label class="col-sm-8 col-sm-offset-2">Tên đăng nhập</label>
+				<div class="col-sm-8 col-sm-offset-2">
+						<input type="text" name="username" class="form-control"	placeholder="Tên đăng nhập">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="row">
+				<label class="col-sm-8 col-sm-offset-2">Mật khẩu</label>
+				<div class="col-sm-8 col-sm-offset-2">
+					<input type="password" name="password" class="form-control"	placeholder="Mật khẩu">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<a th:href="@{/home/forgot}" class="forgot-password" style="text-decoration: revert;">Quên mật khẩu?</a>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="row">
+				<div class=" col-sm-4 col-sm-offset-2" style="margin-top: 7px;" >
+					<input type="checkbox" class="" name="remeber-me" id="remember">
+					<label for="remember"> Hãy nhớ tôi</label>
+				</div>
+				<div class=" col-sm-4">
+					<div class="text-center">
+						<input type="submit" class="form-control btn btn-login"
+						value="Đăng nhập">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="text-center">
+						<div class="divider" style="margin-top: -4px; margin-bottom: 0;">
+				          </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="text-center">
+				<label class="col-sm-8 col-sm-offset-2">Bạn chưa có tài khoản?</label> </div>
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="text-center">
+						<a th:href="@{/home/signup}" class="btn-default form-control" style="font-weight: 700;">Đăng ký tài khoản</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+			
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="text-center">
+						<div class="divider">
+				            <strong class="divider-title ng-binding">hoặc</strong>
+				          </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="text-center ">
+						<a href="/security2/authrization/facebook" class="btn-primary form-control"style="font-weight: 700;"> <i class=" social_icon_fb fa fa-facebook"></i> Tiếp tục với Facebook</a>
+					</div>
+				</div>
+				
+				<div class=" col-sm-8 col-sm-offset-2" style="margin-top: 10px;">
+					<div class="text-center">
+						<a href="/security2/authrization/google" class="btn-default form-control" style="font-weight: 700;"> <img class="gg" th:src="@{|/assets/images/thuonghieu/gg.jpg|}"> Tiếp tục bằng Google</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		</div>
+	</form>
+
+</main>
+</html>

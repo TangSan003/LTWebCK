@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-4">
+			<div class="header-top-left">
+				<div class="contact">
+					<a href="#">Liên hệ địa chỉ: </a> <span
+							class="hidden-xs hidden-sm hidden-md">nguyenvietquang25032001@gmail.com</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-8">
+			<ul class="header-top-right text-right">
+				
+				<th:block th:if="${#request.remoteUser}">
+					<li class="dropdown account"><span class="dropdown-toggle"
+					id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" role="button">Xin chào: [[${#request.remoteUser}]]<span
+						class="caret"></span>
+				</span>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<li><a th:href="@{/home/change}">Đổi mật khẩu</a></li>
+						<li><a th:href="@{|/home/info?username=${#request.remoteUser}|}" >Tài khoản của tôi</a></li>
+						<li><a th:href="@{/order/list}">Đơn hàng </a></li>
+						<li><a th:href="@{|/favolist/user|}">Sản phẩm yêu thích</a></li>
+						
+					</ul></li>
+					<li
+						th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+						<a th:href="@{/admin/home/index}">Quản trị</a>
+					</li>
+					
+					<li><a th:href="@{/security/logoff}" ng-click="cart.clear()">Đăng xuất</a></li>
+					
+			
+				</th:block>
+				<th:block th:unless="${#request.remoteUser}">
+					<li><a th:href="@{/security/login/form}">Đăng nhập</a></li>
+				</th:block>
+				
+
+			</ul>
+			
+			<div id="isusername" hidden="true">[[${#request.remoteUser}]]</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/index :: dynamic(~{::main})}">
+
+
+<body>
+    <main>
+     <div class="table-responsive wrapper-cart">
+			<table class="table table-bordered">
+				<thead>
+					<tr class="tr">
+						<td class="text-center">Mã đơn hàng</td>
+						<td class="text-center">Ngày đặt hàng</td>
+						<td class="text-center">Địa chỉ nhận hàng</td>
+						<td class="text-center">Trạng thái đơn hàng</td>
+						<td class="text-center"></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order,state:${orders}">
+						<td class="text-center">[[${order.order_id}]]</td>
+						<td class="text-center">[[${order.createDate}]]</td>
+						<td class="text-center">[[${order.address}]]</td>
+						<td class="text-center">
+						
+						<b style="color: #00008B;">[[${order.status==0?'Đang xử lý' :''}]]</b>
+									<b style="color: #FFD700;">[[${order.status==1?'Đang giao hàng' :''}]]</b>
+									<b style="color: #2E8B57;">[[${order.status==3?'Đơn hàng đã hoàn thành' :''}]]</b>
+												<b style="color: #DC143C;">[[${order.status==2?'Hủy giao hàng' :''}]]</b>
+									<b style="color: #DC143C;">[[${order.status==4?'Đã hủy' :''}]]</b>
+						</td>
+						<td>
+							<a th:href="@{|/order/detail/${order.order_id}|}"
+								class="btn btn-info"> <b class="fa fa-eye"></b>
+							</a>
+						
+							<button th:if="*{order.Status}==0" type="button" class="btn btn-warning"
+								data-toggle="modal" 
+								th:attr="ng-click=@{|cart.get_infoorderid(${order.order_id})|}"
+								 data-target="#myModal"><i class="fa fa-times-circle"></i></button> <!-- Modal -->
+							
+							<div class="modal fade" id="myModal" role="dialog">
+							<form tH:action="@{/order/remove}" method="post" >
+								<div class="modal-dialog">
+										<input name="order_id" value="{{cart.get_orderid}}" hidden="true">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<h3 style="color: red;">Bạn muốn hủy đơn hàng</h3>
+										</div>
+										<div class="modal-footer">
+										<button type="submit"
+											class="btn btn-warning" >Hủy hàng</button>
+											
+										<button type="button" class="btn btn-default"
+												data-dismiss="modal">Đóng</button>
+											
+											
+										</div>
+								</div>
+								</div>
+								</form>
+								</div>
+								
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+    </main>
+</body>
+
+</html>

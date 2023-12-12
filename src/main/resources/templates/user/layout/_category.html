@@ -1,0 +1,109 @@
+
+<div xmlns:th="http://www.thymeleaf.org" id="category-menu"
+	class=" collapse in " aria-expanded="true" role="button">
+
+	<div class="text-center" >
+			<div style="box-shadow: 0 0 8px 0 #dee2e6;border-radius: 6px;">
+				<img src="/assets/images/th.jpg" style="height: 147.5px;box-shadow: 0 0 8px 0 #dee2e6;border-radius: 6px;"/>
+			</div>
+		</div>
+
+</div>
+<div class="filter filter-timkiem left-sidebar-widget mb_50">
+	<div class="heading-part ">
+		<h2 class="main_title">Tìm kiếm nâng cao</h2>
+	</div>
+	
+		<form th:action="@{/product/list/find/1}">
+			<p style="padding-left:2px">
+		        <label for="amount">Giá:</label>
+		        <input type="text" id="amount1" readonly style="border:0; color: #198997; font-weight:bold; width: 212px">
+		        <input type="hidden" th:value="MinPrice" id="amount2" name="MinPrice" readonly >
+		        <input type="hidden" th:value="MaxPrice" id="amount3" name="MaxPrice" readonly>
+		    </p>
+		    <div id="slider-range"></div>
+		    
+			<div class="form-group form-group-search">
+				<div class="col-sm-6 name">Loại sản phẩm</div>
+				<div class="col-sm-6">
+					<select name="Category_id" data-live-search="true" class="form-control text-center">
+						<option hidden="true" value="">Tất cả</option>
+						<div class="form-group selectpicker show-tick" th:each="c,state:${cates}">
+							<option  th:value="${c.Category_id}">[[${c.name}]]</option>
+						</div>
+					</select>
+				</div>
+			</div>
+	
+			<div class="form-group form-group-search">
+				<div class="col-sm-6 name">Thương hiệu</div>
+				<div class="col-sm-6">
+					<select name="Trademark_id" data-live-search="true"	class="form-control text-center">
+						<option hidden="true" value="">Tất cả</option>
+						<div class="form-group selectpicker show-tick" th:each="t,state:${trads}">
+							<option th:value="${t.Trademark_id}">[[${t.Name}]]</option>
+						</div>
+					</select>
+				</div>
+			</div>
+	
+			<div class="form-group form-group-search">
+				<div class="col-sm-6 name">Màu sắc</div>
+				<div class="col-sm-6">
+					<select name="Color" data-live-search="true"	class="form-control text-center">
+						<option value="">Tất cả</option>
+						<option value="Trắng">Trắng </option>
+						<option value="Đen">Đen</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-group-search text-center">
+				<button class="btn btn-round btn-default"  style="margin-top: 10px;" type="submit">Tìm	kiếm</button>
+			</div>
+		</form>
+		
+</div>
+
+<div class="left_banner left-sidebar-widget mb_50 ">
+<div class="sub-hover" style="box-shadow: 0 0 10px 0 #dee2e6;">
+	<a href="/product/detail/11"><img src="/assets/images/Banner/bannerdoc.jpg" alt="Left Banner"
+		class="img-responsive" /></a>
+		</div>
+	
+</div>
+<!-- <div class="left_banner left-sidebar-widget mb_50">
+		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FGoalKilles%2F&tabs=timeline&width=280&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1759690680890768" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+		</div> -->
+
+ <script>
+
+        $(function() {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 40000000,
+                values: [0, 40000000],
+                slide: function(event, ui) {
+                    $("#amount1").val(formatNumberWithCommas(ui.values[0]) + " Đ - " + formatNumberWithCommas(ui.values[1]) + " Đ");
+                    $("#amount2").val(ui.values[0]);
+                    $("#amount3").val(ui.values[1]);
+                }
+            });
+
+            function formatNumberWithCommas(number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            // Hàm cập nhật giá trị cho các input khi trang đã tải xong
+            function updateInputs() {
+                const values = $("#slider-range").slider("values");
+                $("#amount1").val(formatNumberWithCommas(values[0]) + " Đ - " + formatNumberWithCommas(values[1]) +" Đ");
+                $("#amount2").val(values[0]);
+                $("#amount3").val(values[1]);
+            }
+
+            // Gọi hàm cập nhật khi trang đã tải xong
+            updateInputs();
+        });
+    </script>
+    

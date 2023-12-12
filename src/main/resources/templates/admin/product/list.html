@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{admin/layout/index :: dynamic(~{::main})}">
+
+
+<body>
+	<main>
+		<div class="row mt">
+			<div class="col-md-12">
+				<div class="content-panel">
+					<table class="table   ">
+						<h3>
+							&emsp;<i class="fa fa-angle-right"></i> Danh sách sản phẩm
+						</h3>
+						<ul class="nav nav-tabs" style="background: #ffffff;">
+							<li class="nav-item"><a class="nav-link active"
+								data-toggle="tab" href="#home">Tìm kiếm</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								href="#menu1">Tìm kiếm nâng cao</a></li>
+							<li><a tH:href=@{/admin/product/detail}
+								class=" btn btn-info btn-xs"><span
+									class="glyphicon glyphicon-plus"></span> Thêm mới</a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="home" class=" tab-pane active">
+								<form method="post" th:action="@{/admin/product/findIdorName/1}">
+									<div class="col-sm-12">
+										<div class="row">
+											<br>
+
+											<div class="form-group col-sm-4">
+											
+												<input type="text" value="" name="keyword"
+													class="form-control" placeholder="Tìm theo id hoặc tên sản phẩm">
+											</div>
+											
+											<button class="btn btn-round btn-default" type="submit">Tìm
+												kiếm</button>
+												
+										
+											<i style="float: right; margin: 10px;" >Hiển thị  [[${sizepro} ]]  sản phẩm </i>
+										
+							
+										</div>
+									</div>
+								</form>
+								
+							</div>
+							<div id="menu1" class="tab-pane fade">
+								<form th:action="@{/admin/product/findallkeyword/1}">
+									<div class="col-sm-12">
+										<div class="row">
+											<br>
+											<div class="form-group col-sm-4" style="padding: 0">
+												<div class="form-group col-sm-6">
+													Từ giá <select class="form-control" name="MinPrice"
+														data-live-search="true" style="height: 36px;">
+														<option value="0">Tất cả</option>
+														<option value="1000000">1,000,000 Đ</option>
+														<option value="2000000">2,000,000 Đ</option>
+														<option value="5000000">5,000,000 Đ </option>
+														<option value="10000000">10,000,000 Đ</option>
+														<option value="15000000">15,000,000 Đ</option>
+													</select>
+												</div>
+												<div class="form-group col-sm-6">
+													Đến giá <select class="form-control" name="MaxPrice"
+														data-live-search="true" style="height: 36px;">
+														<option value="1000000000">Tất cả</option>
+														<option value="2000000">2,000,000 Đ</option>
+														<option value="5000000">5,000,000 Đ</option>
+														<option value="10000000">10,000,000 Đ</option>
+														<option value="15000000">15,000,000 Đ</option>
+														<option value="50000000">50,000,000 Đ</option>
+													</select>
+												</div>
+
+											</div>
+											<div class="form-group col-sm-4">
+												<div>Loại sản phẩm</div>
+												<select name="Category_id" data-live-search="true"
+													class="form-group col-sm-12 selectpicker show-tick"
+													style="height: 36px;">
+													<option hidden="true" value="">Tất cả</option>
+													<div class="form-group selectpicker show-tick"
+														th:each="c,state:${cates}">
+														<option th:value="${c.Category_id}">[[${c.name}]]</option>
+													</div>
+												</select>
+
+											</div>
+											<div class="form-group col-sm-4">
+												<div>Thương hiệu</div>
+												<select name="Trademark_id" data-live-search="true"
+													class="form-group col-sm-12 selectpicker show-tick"
+													style="height: 36px;">
+													<option hidden="true" value="">Tất cả</option>
+													<div class="form-group selectpicker show-tick"
+														th:each="t,state:${trads}">
+														<option th:value="${t.Trademark_id}">[[${t.Name}]]</option>
+													</div>
+												</select>
+											</div>
+										<!-- 	<div class="form-group col-sm-4">
+												<div>Chip</div>
+												<input type="text" name="Chip" class="form-control">
+											</div> -->
+											<div class="form-group col-sm-4">
+												<div>Màu</div>
+												<select class="form-control" name="Color"
+													data-live-search="true" style="height: 36px;">
+													<option value="">Tất cả</option>
+													<option value="Trắng">Trắng</option>
+													<option value="Đen">Đen</option>
+												</select>
+											</div>
+											<div class="form-group col-sm-4">
+												<div>Chất liệu</div>
+												<select class="form-control" name="Material"
+													data-live-search="true" style="height: 36px;">
+													<option value="">Tất cả</option>
+													<option value="Gỗ">Gỗ</option>
+													<option value="Nhôm">Nhôm</option>
+												</select>
+											</div>
+											<div class="form-group col-sm-4">
+												<div>Tình trạng</div>
+												<select class="form-control" name="Status"
+													data-live-search="true" style="height: 36px;">
+													<option value="">Tất cả</option>
+													<option value="1">Hiển thị</option>
+													<option value="0">Ẩn</option>
+												</select>
+											</div>
+											<div class="form-group col-sm-4">
+												<div>Kích thước</div>
+												<select class="form-control" name="Size"
+													data-live-search="true" style="height: 36px;">
+													<option value="">Tất cả</option>
+													<option value="20-60">20-60</option>
+													<option value="40-80">40-80</option>
+												</select>
+											</div>
+											<div class="form-group col-sm-4">
+												<br>
+												<button class="btn btn-round btn-default" type="submit">Tìm
+													kiếm</button>
+												<i th:utext="${message}"></i>
+												
+											</div>
+										</div>
+
+									</div>
+
+								</form>
+							</div>
+						</div>
+
+						<thead>
+							<tr style="font-size: 15px;">
+								<th>Mã SP</th>
+								<th>Tên sản phẩm</th>
+								<th>Giá</th>
+								<th>Số lượng</th>
+								<th>Ngày nhập kho</th>
+								<th>Hình ảnh</th>
+								<th>Loại sản phẩm</th>
+								<th>Thương hiệu</th>
+								<th>Khuyễn mãi</th>
+								<!-- <th>Chip</th> -->
+								<th>Màu</th>
+								<th>Chất liệu</th>
+							 <th>Kích thước</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="box pull-up-1" th:each="p,state:${items.pageList}">
+								<td>&ensp;&ensp;[[${p.Product_id}]]</td>
+								<td>[[${p.Name}]]</td>
+								<td>[[${#numbers.formatDecimal(p.unit_price, 3 , 'COMMA',0,'POINT')}]] Đ</td>
+								<td>[[${p.quantity}]]<span th:if="${p.quantity} < 11   ">
+										<span class="label label-warning" th:if="${p.quantity} >0   ">Sắp
+											hết hàng</span>
+								</span> <span class="label label-danger" th:if="${p.quantity} == 0">Hết
+										hàng</span>
+
+								</td>
+								<td>[[${p.product_date}]]</td>
+								<td><img th:src="@{|/assets/images/${p.image1}|}"
+									style="max-width: 70px; height: 70px;"></td>
+								<td>[[${p.category.Name}]]</td>
+								<td>[[${p.trademark.Name}]]</td>
+								<td>[[${p.distcount}]] %</td>
+						
+								<td>[[${p.color}]]</td>
+								<td>[[${p.material}]]</td>
+								<td>[[${p.size}]]</td>
+								<!-- 								<td><a th:if="${p.lastest}==true" -->
+								<!-- 									class="btn btn-round btn-success"><i class="fa fa-check"></i></a> -->
+								<!-- 									<a th:if="${p.lastest}==false" class="btn btn-round btn-danger"><i -->
+								<!-- 										class="fa fa-check"></i></a></td> -->
+								<!-- 								<td><a th:if="${p.special}==true" -->
+								<!-- 									class="btn btn-round btn-success"><i class="fa fa-check"></i></a> -->
+								<!-- 									<a th:if="${p.special}==false" class="btn btn-round btn-danger"><i -->
+								<!-- 										class="fa fa-check"></i></a></td> -->
+								<td><a 
+									th:href="@{|/admin/product/edit?product_id=${p.product_id}|}"
+									class="btn btn-round btn-primary"> <i class="fa fa-pencil"></i>
+								</a> <a  th:href="@{|/admin/product/delete/${p.product_id}|}"
+									class="btn btn-round btn-danger"> <i class="fa fa-trash-o "></i>
+										
+								</a>
+								</td>
+							</tr>
+
+
+						</tbody>
+
+					</table>
+					
+					<div class="text-center">
+					<div class="dataTables_paginate paging_bootstrap pagination" >
+						<ul>
+							<li
+								th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+								<a class="page-link" th:href="@{/admin/product/list}">Đầu</a>
+							</li>
+							<li
+								th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+								<a class="page-link" aria-label="Previous"
+								th:href="@{|${baseUrl}${currentIndex - 1}|}"
+								title='Lùi 1 trang'><span aria-hidden="true">«</span>
+									<span class="sr-only">Previous</span></a>
+							</li>
+							<li th:if="${currentIndex - 2} > 0">
+								<a class="page-link" aria-label="Previous"
+								th:href="@{|${baseUrl}${currentIndex - 2}|}"
+								><span aria-hidden="true">[[${currentIndex} -2]]</span>
+									<span class="sr-only">Previous</span></a>
+							</li>
+							<li th:if="${currentIndex - 1} != 0">
+								<a class="page-link" aria-label="Previous"
+								th:href="@{|${baseUrl}${currentIndex - 1}|}"
+								><span aria-hidden="true">[[${currentIndex} -1]]</span>
+									<span class="sr-only">Previous</span></a>
+							</li>
+							<li  class="page-item active">
+								<a class="page-link " aria-label="Previous"
+								th:href="@{|${baseUrl}${currentIndex}|}"
+								><span aria-hidden="true">[[${currentIndex}]]</span>
+									<span class="sr-only">Previous</span></a>
+							</li>
+						
+							<li th:if="${currentIndex +1} <= ${totalPageCount}">
+								<a class="page-link" aria-label="Previous"
+								th:href="@{|${baseUrl}${currentIndex + 1}|}"
+								><span aria-hidden="true">[[${currentIndex} +1]]</span>
+									<span class="sr-only">Previous</span></a>
+							</li>
+							<li th:if="${currentIndex +2} <= ${totalPageCount}">
+								<a class="page-link" aria-label="Previous"
+								th:href="@{|${baseUrl}${currentIndex + 2}|}"
+								><span aria-hidden="true">[[${currentIndex} +2]]</span>
+									<span class="sr-only">Previous</span></a>
+							</li>
+							
+<!-- 							<li -->
+<!-- 								th:each="item : ${#numbers.sequence(beginIndex,totalPageCount)}" -->
+<!-- 								th:class="${item == currentIndex ? 'page-item active' :'page-item' }"> -->
+<!-- 								<a  class="page-link" th:href="@{|${baseUrl}${item}|}"> <span -->
+<!-- 									th:text='${item}'></span> -->
+<!-- 							</a> -->
+<!-- 							</li> -->
+							
+							<li
+								th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+								<a class="page-link" aria-label="Next"
+								th:href="@{|${baseUrl}${currentIndex + 1}|}"
+								title='Tiến 1 trang'><span aria-hidden="true">»</span> <span
+									class="sr-only">Next</span></a>
+							</li>
+							<li
+								th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+								<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Cuối</a>
+							</li>
+						</ul>
+					</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+
+	</main>
+</body>
+</html>

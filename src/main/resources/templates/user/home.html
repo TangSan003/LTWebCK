@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/layout/index :: dynamic(~{::main})}">
+
+
+<body>
+	<main>
+		<div th:replace="~{user/cart/view :: shopping_cart}"></div>
+		<div class="panel-primary">
+					<form method="post" action="/pay">
+						<div class="panel-header-dh">
+							<h2 style="text-align: center;">Thông tin đặt hàng</h2>
+							<br>
+							<hr>
+						</div>
+						
+						<div class="panel-body-dh">
+							<div class="form-group col-sm-6">
+								<div class="thongtin">Người mua</div>
+								<div class="form-control" id="username" readonly>[[${#request.remoteUser}]]</div>
+							</div>
+							<div class="form-group col-sm-6">
+
+								<div class="thongtin">Ngày đặt hàng</div>
+								<div class="form-control" readonly>{{ order.createDate | date :
+									'dd-MM-yyyy HH:mm'}}</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<div class="thongtin">Số điện thoại</div>
+								<input class="form-control"style="border-radius: 20px; font-size: 15px; border: 1px solid #ccc;"
+									type="text" required pattern="[0][0-9]{9}" ng-model="order.phone">
+							</div>
+							<div hidden="TRUE" class="form-group col-sm-6">
+								<div class="thongtin">Tổng tiền </div>
+								<input class="form-control" readonly style="border-radius: 20px; font-size: 15px; border: 1px solid #ccc;"
+									type="text" id="price" name="price" ng-model="order.price /23000">
+							</div>
+							<div class="form-group col-sm-6">
+								<div class="thongtin">Tổng tiền</div>
+								<input class="form-control" readonly style="border-radius: 20px; font-size: 15px; border: 1px solid #ccc;"
+									type="text"  ng-model="order.price/23000 | currency : $ : 2 ">
+							</div>
+
+							<div hidden="true">
+								<input class="form-control" type="text" id="currency"
+									name="currency" placeholder="Enter Currency"
+									ng-model="order.currency"> <input class="form-control"
+									type="text" id="method" name="method"
+									placeholder="Payment Method" ng-model="order.method"> <input
+									class="form-control" type="text" id="intent" name="intent"
+									placeholder="sale" ng-model="order.intent"> <input
+									class="form-control" type="text" id="description"
+									name="description" placeholder="Payment Description"
+									ng-model="order.description">
+
+							</div>
+							
+							<div class="form-group  col-sm-12">
+								<div class="thongtin">Địa chỉ nhận hàng</div>
+								<textarea ng-model="order.address" class="form-control" required></textarea>
+							</div>
+							
+						</div>
+						
+						<div class=" text-center">
+						<input type="submit" ng-click="order.purchase1()"
+							value="Xác nhận và thanh toán" class="btn ">
+						</div>
+					</form>
+
+		</div>
+	</main>
+</body>
+</html>
+

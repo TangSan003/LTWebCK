@@ -1,0 +1,36 @@
+	<div class="row mt">
+			<div class="col-md-12">
+				<div class="content-panel">
+					
+<table  class="table   ">
+	<h3>
+		&emsp;<i class="fa fa-angle-right"></i> Danh sách sản phẩm đơn hàng
+	</h3>
+	<hr>
+	<thead>
+		<tr>
+			<th><h4>&ensp;Số thứ tự</h4></th>
+
+			<th><h4>Tên sản phẩm</h4></th>
+			<th><h4>Hình ảnh</h4></th>
+			<th><h4>Số lượng</h4></th>
+			<th><h4>Tổng giá</h4></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr class="box pull-up-1" th:each="odt,state:${odetail}">
+			<td>&ensp;&ensp;[[${state.index} +1]]</td>
+
+			<td>[[${odt.product.Name}]]</td>
+			<td><img th:src="@{|/assets/images/${odt.product.Image1}|}"
+				style="width: 100px; height: 100px;"></td>
+			<td>[[${odt.Quantity}]]</td>
+			<td>[[${#numbers.formatDecimal(odt.Price , 0 ,
+				'COMMA',2,'POINT')}]] Đ</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</div>

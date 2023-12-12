@@ -1,0 +1,134 @@
+
+		<div class="info col-sm-10">
+			<div id="full-stars-example">
+				<div th:if="${vote_arage}>=1" style="margin: 0 -10px;">
+				<div th:if="${vote_arage}<2" class="rating-group">
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				
+			([[${#numbers.formatDecimal(vote_arage , 0 , 'COMMA',1,'POINT')}]]/5) ([[${votesize}]] Lượt đánh giá)
+				</div>
+				</div>
+<!-- 				//////////// -->
+				<div th:if="${vote_arage}>=2" style="margin: 0 -10px;">
+				<div th:if="${vote_arage}<3" class="rating-group">
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				
+				([[${#numbers.formatDecimal(vote_arage , 0 , 'COMMA',1,'POINT')}]]/5) ([[${votesize}]] Lượt đánh giá)
+				</div>
+				</div>
+				
+				<!-- 				//////////// -->
+				<div th:if="${vote_arage}>=3" style="margin: 0 -10px;">
+				<div th:if="${vote_arage}<4" class="rating-group">
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+					<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+			
+		([[${#numbers.formatDecimal(vote_arage , 0 , 'COMMA',1,'POINT')}]]/5) ([[${votesize}]] Lượt đánh giá)
+				</div>
+				</div>
+				
+								<!-- 				//////////// -->
+				<div th:if="${vote_arage}>=4" style="margin: 0 -10px;">
+				<div th:if="${vote_arage}<5" class="rating-group">
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				
+			([[${#numbers.formatDecimal(vote_arage , 0 , 'COMMA',1,'POINT')}]]/5) ([[${votesize}]] Lượt đánh giá)
+				</div>
+				</div>
+				<!-- 				//////////// -->
+				<div th:if="${vote_arage}==5" style="margin: 0 -10px;" class="rating-group">
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+					<label aria-label="1 star"
+						class="rating__label_2rm" for="rating3-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> 
+				
+				([[${#numbers.formatDecimal(vote_arage , 0 , 'COMMA',1,'POINT')}]]/5) ([[${votesize}]] Lượt đánh giá)
+				</div>
+				
+						<div th:if="${vote_arage}==0" style="margin: 0 -10px;" class="rating-group">
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				<label aria-label="1 star"
+					class="rating__label_2rm" for="rating3-1"><i
+					class="rating__icon  fa fa-star"></i></label>  
+				(Sản phẩm này chưa có đánh giá !)
+				</div>
+				
+			</div>
+		</div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/magnific-popup.css">
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/owl.carousel.css">
+<link rel="shortcut icon" href="/assets/images/faviconGS.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="/assets/images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="/assets/images/apple-touch-icon-114x114.png">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="wrapper">
+		<header id="header">
+			<div class="header-top">
+				<div th:replace="user/layout/_hearder.html"></div>
+			</div>
+			<div class="header">
+				<div th:replace="user/layout/_menu.html"></div>
+			</div>
+
+		</header>
+		<div class="container">
+			<div class="row ">
+				<div class="col-sm-12 col-lg-12 mtb_20" style="margin-bottom: 40px;">
+					<div th:replace="${main}"></div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="footer pt_60">
+			<div th:replace="user/layout/_footer.html"></div>
+		</div>
+	</div>
+	<script src="/assets/js/jQuery_v3.1.1.min.js"></script>
+	<script src="/assets/js/owl.carousel.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<script src="/assets/js/jquery.magnific-popup.js"></script>
+	<script src="/assets/js/jquery.firstVisitPopup.js"></script>
+	<script src="/assets/js/custom.js"></script>
+	<script src="/assets/js/jquery-ui.js"></script>
+	<!-- Shopping Cart JS -->
+	<script src="/assets/js/shopping-cart-app.js"></script>
+
+</body>
+
+</html>

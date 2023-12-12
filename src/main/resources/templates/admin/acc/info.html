@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{admin/layout/index :: dynamic(~{::main})}">
+
+	<body>
+<main>
+	<div class="row mt">
+          <div class="col-md-12">
+            <div class="content-panel">
+		<h3>&emsp;<i class="fa fa-angle-right"></i> Thông tin tài khoản</h3>
+		<hr>
+		<div class="panel-body">
+			<form th:action="@{/infonew}" method="post" modelAttribute="acc"
+				enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<label for="image"> <img
+							th:src="@{|/assets/images/${acc.Photo}|}"
+							style="max-width: 100%; height: 200px;" alt="Photo User">
+						</label>
+					</div>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<div><h4>Tên tài khoản:</h4></div>
+								<input name="username" th:value="${#request.remoteUser}"
+									class="form-control" readonly="readonly">
+							</div>
+							<div class="form-group col-sm-3">
+								<div><h4>Mật khẩu</h4></div>
+								<input type="password" name="Password" th:value="${acc.Password}"
+									class="form-control">
+							</div>
+							<div class="form-group col-sm-3">
+								<div><h4>Trạng thái</h4></div>
+								<select class="form-control" name="active"
+												data-live-search="true" style="height: 36px;">
+											
+												<option value="true">Đã kích hoạt</option>
+												<option value="false">Chưa kích hoạt</option>
+											</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<div><h4>Hình ảnh</h4></div>
+								<input type="hidden" name="Photo" th:value="${acc.Photo}">
+								<input type="file" name="photo_img" class="form-control">
+							</div>
+							<div class="form-group col-sm-6">
+								<div><h4>Họ và tên:</h4></div>
+								<input type="text" name="Fullname" th:value="${acc.Fullname}"
+									class="form-control">
+							</div>
+							<div class="form-group col-sm-6">
+								<div><h4>Email</h4></div>
+								<input type="email" name="Email" th:value="${acc.Email}"
+									class="form-control">
+							</div>
+							<div class="form-group col-sm-6">
+								<div><h4>Số điện thoại</h4></div>
+								<input type="text" name="Phone" th:value="${acc.Phone}"
+									class="form-control">
+							</div>
+						</div>
+						
+						<i class="pull-left text-danger" th:text="${message}"></i> <br>
+						<button   type="submit" class="btn btn-round btn-info">Cập nhập</button>
+						</div>
+						</div>
+			</form>
+		</div>
+	</div>
+	</div>
+	</div>
+	
+	
+</main>
+</body>
+</html>

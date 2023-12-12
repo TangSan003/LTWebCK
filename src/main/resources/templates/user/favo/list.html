@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main >
+		<div class="wrapper-cart">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr class="tr">
+							<td class="text-center">STT</td>
+							<td class="text-center">Tên sản phẩm</td>
+							<td class="text-center">Hình ảnh</td>
+							<td class="text-center">Khuyến mãi</td>
+							<td class="text-center">Giá</td>
+							<td class="text-center"></td>
+						</tr>
+					</thead>
+					<tbody border="1">
+						<tr th:each="favo,state:${listfavo}" > 
+							<td class="text-center">[[${state.index}]]</td>
+							<td class="text-center">[[${favo.product.Name}]]</td>
+							<td class="text-center"><img th:src="@{|/assets/images/${favo.product.Image1}|}"
+								style="height: 100px;"></td>
+							<td class="text-center">[[${favo.product.Distcount}]] %</td>
+							<td class="text-center">[[${#numbers.formatDecimal(favo.product.Unit_price, 3 , 'COMMA',0,'POINT')}]] Đ</td>
+	
+							<td>
+							<div>
+								<a th:href="@{|/product/detail/${favo.product.Product_id}|}" style="margin-bottom: 10px;"
+									class="btn btn-info "> <b class="fa fa-eye"></b>
+								</a>
+							</div>
+							<div>
+								<a th:href="@{|/favolist/remove/${favo.product.product_id}|}"
+									class="btn btn-info "> <b class="fa fa-trash"></b>
+								</a>
+							</div>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>

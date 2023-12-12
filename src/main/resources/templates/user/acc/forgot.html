@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/acc/index ::dynamic(~{::main})}">
+<main>
+	<form th:action="@{/forgotPW}" method="post"
+		class="col-sm-6 col-sm-offset-3">
+		<div  class="product-thumb">
+		
+		<div class="panel-heading text-center"><h2><strong> Cài đặt lại Mật khẩu </strong></h2></div>
+		<div class="panel-heading text-center" style="padding-top: 0">
+			Nhập tên đăng nhập BlackBear, và địa chỉ email bạn đã dùng để đăng ký. 
+			Chúng tôi sẽ gửi email cho bạn với tên đăng nhập của bạn và mật khẩu 
+			để bạn cài đặt lại mật khẩu.
+		</div>
+		<div class="form-group text-center" >
+			<i class="text-danger" th:text="${message}"></i>
+		</div>
+		
+		
+		<div class="form-group ">
+			<div class="row">
+				<label class="col-sm-8 col-sm-offset-2">Tên đăng nhập</label>
+				<div class="col-sm-8 col-sm-offset-2">
+						<input type="text" name="name" id="username1" tabindex="1"
+				class="form-control" placeholder="Tên đăng nhập">
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group ">
+			<div class="row">
+				<label class="col-sm-8 col-sm-offset-2">Email của bạn là gì?</label>
+				<div class="col-sm-8 col-sm-offset-2">
+						<input  required type="email" name="email" id="email" tabindex="2"
+				class="form-control" placeholder="Nhập email của bạn">
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<input type="submit" name="login-submit" id="login-submit"
+						tabindex="4" class="form-control btn btn-login" value="Send Email">
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="text-center">
+					 	<label>Quay lại màn hình </label> <a th:href="@{/security/login/form}" style="text-decoration: revert;">Đăng nhập</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		</div>
+	
+	</form>
+</main>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>BlackBear-Admin</title>
+
+  <!-- Favicons -->
+  <link href="/assets/admin/img/favicon.png" rel="icon">
+  <link href="/assets/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/assets/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="/assets/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="/assets/admin/css/style.css" rel="stylesheet">
+  <link href="/assets/admin/css/style-responsive.css" rel="stylesheet">
+  
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+  <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3 p404 centered">
+        <img src="/assets/admin/img/404.png" alt="">
+        <h1>Bạn không có quyền truy cập trang wed này!!</h1>
+        <h3>The page you are looking for doesn't exist.</h3>
+        <br>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+           
+            	<div class="btn btn-round  btn-theme"
+						th:if="${#request.isUserInRole('STAF')}">
+						<a style="color:#000000" th:href="@{/admin/home/index}">Quay lại trang quản trị</a>
+					</div>
+					
+					<div class="btn btn-round  btn-theme"><a style="color:#000000" th:href="@{/home/index}">Quay lại trang chủ</a></div>
+					
+          </div>
+        </div>
+        <h5 class="mt">Hey, maybe you will be interested in these pages:</h5>
+        
+      </div>
+    </div>
+  </div>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="/assets/admin/lib/jquery/jquery.min.js"></script>
+  <script src="/assets/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

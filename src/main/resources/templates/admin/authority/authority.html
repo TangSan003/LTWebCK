@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{admin/layout/index :: dynamic(~{::main})}">
+
+
+<body>
+	<main ng-controller="authority">
+		<div class="row mt">
+			<div class="col-md-12">
+				<div class="content-panel">
+					<h3>
+						&emsp;<i class="fa fa-angle-right"></i> Phân quyền 
+
+					</h3>
+					<table class="table  ">
+						<thead>
+							<tr>
+								<th ><big><b>Tên nhân viên</b></big></th>
+								<th  class="text-center"><big><b>Khách hàng</b></big></th>
+								
+								<th  class="text-center"><big><b>Nhân viên</b></big></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="box pull-up-1"  ng-repeat="acc in pager.admins">
+								<td>&ensp;&ensp;{{acc.fullname}}</td>
+								<th ng-repeat="role in roles" class="text-center"><input
+									ng-checked="authority_of(acc,role)"
+									ng-click="authority_changed(acc,role)" type="checkbox">
+								</th>
+							</tr>
+						</tbody>
+					</table>
+					<div class=" text-center">
+						<button ng-click="pager.first()" class="btn btn-theme03">
+							<b class="glyphicon glyphicon-hand-up"></b>
+						</button>
+						<button ng-click="pager.prev()" class="btn btn-theme03">
+							<b class="glyphicon glyphicon-hand-left"></b>
+						</button>
+						<button class="btn btn-theme03">{{pager.page + 1}} of
+							{{pager.count}}</button>
+						<button ng-click="pager.next()" class="btn btn-theme03">
+							<b class="glyphicon glyphicon-hand-right"></b>
+						</button>
+						<button ng-click="pager.last()" class="btn btn-theme03">
+							<b class="glyphicon glyphicon-hand-down"></b>
+						</button>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+</body>
+</html>

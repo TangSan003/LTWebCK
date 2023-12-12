@@ -1,0 +1,58 @@
+<aside>
+	<div id="sidebar" class="nav-collapse " >
+		<!-- sidebar menu start-->
+		<ul class="sidebar-menu" id="nav-accordion" >
+<!-- 			<p class="centered"> -->
+<!-- 				<a href="profile.html"><img -->
+<!-- 					th:src="@{|/assets/images/${acc1.Photo}|}"  class="img-circle" -->
+<!-- 					width="60"></a> -->
+<!-- 			</p> -->
+			<a style="color: rgb(250, 244, 244);  text-transform: uppercase;" th:href="@{|/admin/info?username=${#request.remoteUser}|}"><h4
+					class="centered">[[${#request.remoteUser}]]</h4></a>
+			<li class="mt" ><a th:href="@{/admin/home/index}"> <i
+					class="fa fa-home"></i> <span>Trang chủ</span>
+			</a></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-th-large"></i> <span>Quản lý hàng hóa</span>
+			</a>
+				<ul class="sub">
+					<li><a th:href="@{/admin/product/list}">Quản lý sản phẩm</a></li>
+					<li><a th:href="@{/admin/category/list}">Quản lý loại hàng</a></li>
+					<li><a th:href="@{/admin/trademark/list}">Quản lý thương hiệu</a></li>
+
+				</ul></li>
+			<li class="sub-menu"><a th:href="@{/admin/order/list}"> <i
+					class="fa fa-dropbox"></i> <span>Quản lý đơn hàng</span>
+			</a></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class=" fa fa-bar-chart-o"></i> <span>Thống kê</span>
+			</a>
+				<ul class="sub">
+					<li><a th:href="@{/admin/char/product}">Doanh thu theo sản phẩm</a></li>
+					<li><a th:href="@{/admin/char/charyear?year=2021}">Doanh thu theo tháng</a></li>
+<!-- 					<li><a th:href="@{/admin/char/charday}">Doanh thu theo tháng</a></li> -->
+						<li><a th:href="@{/admin/char/charcate}">Doanh thu theo loại	</a></li>
+						<li><a th:href="@{/admin/char/chartrak}">Doanh thu thương hiệu	</a></li>
+					<li><a th:href="@{/admin/char/charuser}">Doanh thu khách
+							hàng</a></li>
+				</ul></li>
+
+
+ 		
+			
+			
+			
+			<li class="sub-menu"><a th:href="@{/admin/account/list}"> <i
+					class="fa fa-users"></i> <span>Quản lý tài khoản</span>
+			</a></li>
+			<li><a th:href="@{/admin/authority}"> <i class="fa fa-cogs"></i>
+					Phân quyền
+
+			</a></li>
+			<li><a th:href="@{/admin/map}"> <i class="fa fa-map-marker"></i>
+					<span>Google Maps </span>
+			</a></li>
+		</ul>
+		<!-- sidebar menu end-->
+	</div>
+</aside>
